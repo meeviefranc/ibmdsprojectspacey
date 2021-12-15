@@ -1,14 +1,17 @@
 # ibmdsprojectspacey
 
-#Project Title:#
+## Project Title:
 Winning Space Race with Data Science - an IBM Data Science Capstone Project
-#Project Description:#
-In this capstone study, I am a data scientist working for a new rocket company Space Y.
-My project includes analysis on the price of each launch on Space X, a direct competitor of Space Y, which may be directly affected by the use of the first stage.
+
+![](https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DS0701EN-SkillsNetwork/lab_v2/images/landing\_1.gif)
+
+## Project Description:
+In this Capstone study, I am a data scientist working for a new rocket company Space Y.
+My project includes analysis on each launch on Space X, a direct competitor of Space Y, which may be directly affected by the use of the first stage.
 The analysis includes but not limited to use of first stage, landing success and location of launch.
 Then, using machine learning algorithms, determine if first stage will be used and land successfully.
 
-#Table of Contents:#
+## Table of Contents:
 | File | Description |
 | ------------- | ------------- |
 |spaceX_dataCollection| This includes basic data wrangling and formating, including making a request to SpaceX API and cleaning requested data.|
