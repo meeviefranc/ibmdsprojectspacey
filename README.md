@@ -10,6 +10,7 @@ In this Capstone study, I am a data scientist working for a new rocket company S
 My project includes analysis on each launch on Space X, a direct competitor of Space Y, which may be directly affected by the use of the first stage.
 The analysis includes but not limited to use of first stage, landing success and location of launch.
 Then, using machine learning algorithms, determine if first stage will be used and land successfully.
+A working Dash application of the Data Analytics result can be viewed here: http://mvfranc.pythonanywhere.com. 
 
 ## Table of Contents:
 | File | Description |
