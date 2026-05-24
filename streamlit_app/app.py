@@ -1,0 +1,110 @@
+"""
+SpaceX Falcon 9 Landing Prediction — Streamlit App
+Home / Overview page
+"""
+import sys
+import os
+
+# Ensure utils/ is importable when running: streamlit run app.py
+sys.path.insert(0, os.path.dirname(__file__))
+
+import streamlit as st
+
+st.set_page_config(
+    page_title="SpaceX Falcon 9 Analysis",
+    page_icon="🚀",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+# ── Hero section ──────────────────────────────────────────────────────────────
+st.title("🚀 SpaceX Falcon 9 — First Stage Landing Prediction")
+st.caption("IBM Data Science Capstone Project · Space Y Competitive Analysis")
+
+st.image(
+    "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud"
+    "/IBMDeveloperSkillsNetwork-DS0701EN-SkillsNetwork/lab_v2/images/landing_1.gif",
+    use_container_width=True,
+)
+
+st.markdown(
+    """
+## Project Overview
+
+SpaceX advertises Falcon 9 rocket launches at **\\$62 million** per launch, far below competitors
+who charge upward of **\\$165 million**. The key differentiator is the reusability of Falcon 9's
+first stage booster.
+
+This application analyses every recorded SpaceX launch to help **Space Y** — a hypothetical
+competitor — understand:
+
+- Which launch sites have the best success rates
+- How payload mass and orbit type influence landing outcomes
+- Where launch sites are located and their proximity to key geographic features
+- Which machine-learning model best predicts whether the first stage will land successfully
+""",
+    unsafe_allow_html=False,
+)
+
+# ── Quick-stat cards ──────────────────────────────────────────────────────────
+from utils.data_loader import load_dash_data  # noqa: E402
+
+try:
+    df = load_dash_data()
+    total = len(df)
+    successes = int(df["class"].sum())
+    success_rate = successes / total * 100
+    sites = df["Launch Site"].nunique()
+
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Total Launches", total)
+    c2.metric("Successful Landings", successes)
+    c3.metric("Overall Success Rate", f"{success_rate:.1f}%")
+    c4.metric("Launch Sites", sites)
+except Exception:
+    st.info("Summary statistics will appear here once data loads.")
+
+st.divider()
+
+# ── Navigation guide ──────────────────────────────────────────────────────────
+st.subheader("Navigate the app")
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.markdown(
+        """
+### 📊 Launch Dashboard
+Interactive pie chart and scatter plot — filter by launch site and payload range.
+        """
+    )
+
+with col2:
+    st.markdown(
+        """
+### 🔬 EDA Analysis
+Flight-number trends, orbit distributions, payload mass, and landing outcome breakdowns.
+        """
+    )
+
+with col3:
+    st.markdown(
+        """
+### 🗺️ Map View
+Folium map of all launch sites with success/failure markers and proximity distances.
+        """
+    )
+
+with col4:
+    st.markdown(
+        """
+### 🤖 ML Predictions
+Train and compare Logistic Regression, SVM, Decision Tree, and KNN classifiers.
+        """
+    )
+
+st.divider()
+st.caption(
+    "Data sourced from the SpaceX API and IBM Skills Network open datasets. "
+    "Original notebooks preserved in the repository root."
+)

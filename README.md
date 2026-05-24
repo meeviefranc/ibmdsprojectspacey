@@ -1,25 +1,161 @@
-# ibmdsprojectspacey
+<div align="center">
 
-## Project Title:
-Winning Space Race with Data Science - an IBM Data Science Capstone Project
+# 🚀 Winning the Space Race with Data Science
 
-![](https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DS0701EN-SkillsNetwork/lab_v2/images/landing\_1.gif)
+### IBM Data Science Capstone Project
 
-## Project Description:
-In this Capstone study, I am a data scientist working for a new rocket company Space Y.
-My project includes analysis on each launch on Space X, a direct competitor of Space Y, which may be directly affected by the use of the first stage.
-The analysis includes but not limited to use of first stage, landing success and location of launch.
-Then, using machine learning algorithms, determine if first stage will be used and land successfully.
-A working Dash application of the Data Analytics result can be viewed here: http://mvfranc.pythonanywhere.com. 
+![Falcon 9 Landing](https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DS0701EN-SkillsNetwork/lab_v2/images/landing_1.gif)
 
-## Table of Contents:
-| File | Description |
-| ------------- | ------------- |
-|spaceX_dataCollection| This includes basic data wrangling and formating, including making a request to SpaceX API and cleaning requested data.|
-|spaceX_webscraping| This includes web scrapping on Falcon 9 launch records using BeautifulSoup and parsing the wiki data into pandas dataframe.|
-|spaceX_datawranglingEDA| This includes exploratory data analysis and determining training labels from the Space X dataset.|
-|spaceX_EDAWithSQL| This includes further exploratory analysis on the Space X dataset using sql queries in Db2 database.|
-|spaceX_datavisualization| This includes preparation of data for feature engineering and data visualization using pyplot.|
-|spaceX_dataViz_IVAFolium| This includes data visualization using folium maps highlighting successful and failed launches on different locations.|
-|spaceX_ML_PredictiveAnalysis| This includes ML algos to predict successful and failed launches using Logistic Regression, SVM, Trees and KNN.|
-|spaceX_IVADash_LaunchRecords| This includes an interactive dashboard showcasing successful and failed launches for different launch sites. |
+[![Python](https://img.shields.io/badge/Python-3.14-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.35+-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io)
+[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.4+-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
+[![Plotly](https://img.shields.io/badge/Plotly-5.22+-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)](https://plotly.com)
+[![Folium](https://img.shields.io/badge/Folium-0.17+-77B829?style=for-the-badge&logo=leaflet&logoColor=white)](https://python-visualization.github.io/folium/)
+[![Pandas](https://img.shields.io/badge/Pandas-3.0+-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+
+</div>
+
+---
+
+## 📖 Project Overview
+
+As a data scientist at the fictional startup **Space Y**, I was tasked with analysing every historical **SpaceX Falcon 9** launch to build a competitive intelligence tool. SpaceX can offer launches at just **\$62 million** — versus the industry average of **\$165 million** — largely because they recover and reuse Falcon 9's first-stage booster.
+
+This project answers one critical question:
+
+> **Can we predict whether Falcon 9's first stage will land successfully — and therefore estimate launch cost?**
+
+The full pipeline covers data collection, wrangling, SQL analysis, geospatial visualisation, and a multi-model machine learning comparison, all surfaced through a modern **Streamlit** web application.
+
+---
+
+## ✨ Live App — Streamlit UI
+
+The project has been upgraded from a legacy Dash app to a fully-featured **multi-page Streamlit application**.
+
+| Page | Description |
+|------|-------------|
+| 🏠 **Home** | Project overview with live KPI metrics (total launches, success rate, sites) |
+| 📊 **Launch Dashboard** | Interactive pie chart & scatter plot — filter by site and payload range |
+| 🔬 **EDA Analysis** | 6-section exploratory analysis: flight trends, orbit types, payload distributions, year-over-year success rate |
+| 🗺️ **Map View** | Folium map with clustered success/failure markers, site labels, and proximity distance lines |
+| 🤖 **ML Predictions** | Train & compare Logistic Regression, SVM, Decision Tree, and KNN with GridSearchCV; view confusion matrices and classification reports |
+
+### Running the app
+
+```bash
+cd streamlit_app
+python -m streamlit run app.py
+```
+
+Then open **http://localhost:8501** in your browser.
+
+---
+
+## 🗂️ Repository Structure
+
+```
+📦 ibmdsprojectspace
+├── 📓 spaceX_dataCollection.ipynb          # SpaceX API data collection & wrangling
+├── 📓 spaceX_webscraping.ipynb             # BeautifulSoup scraping of Falcon 9 wiki
+├── 📓 spaceX_datawranglingEDA.ipynb        # EDA & training label engineering
+├── 📓 spaceX_EDAWithSQL.ipynb             # SQL-based analysis via IBM Db2
+├── 📓 spaceX_datavisualization.ipynb       # Feature engineering & matplotlib/seaborn plots
+├── 📓 spaceX_dataViz_IVAFolium.ipynb       # Interactive geospatial maps with Folium
+├── 📓 spaceX_ML_PredictiveAnalysis.ipynb   # ML pipeline: LR, SVM, Decision Tree, KNN
+├── 🐍 spaceX_IVADash_LaunchRecords.py      # Original Dash dashboard (preserved)
+│
+└── 📁 streamlit_app/                       # ✨ Modern Streamlit UI
+    ├── app.py                              # Home page entry point
+    ├── requirements.txt                    # Pinned dependencies
+    ├── .streamlit/
+    │   └── config.toml                     # Theme & server configuration
+    ├── pages/
+    │   ├── 1_Launch_Dashboard.py           # Interactive launch records dashboard
+    │   ├── 2_EDA_Analysis.py               # Exploratory data analysis
+    │   ├── 3_Map_View.py                   # Folium geospatial map
+    │   └── 4_ML_Predictions.py            # Machine learning model comparison
+    └── utils/
+        └── data_loader.py                  # Cached dataset loaders
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Tools |
+|-------|-------|
+| **Language** | Python 3.14 |
+| **Web UI** | Streamlit 1.35+, streamlit-folium |
+| **Data** | Pandas 3.0, NumPy |
+| **Visualisation** | Plotly Express, Folium |
+| **Machine Learning** | scikit-learn (LR, SVM, Decision Tree, KNN, GridSearchCV) |
+| **Original Dashboard** | Dash, Plotly |
+| **Data Sources** | SpaceX REST API v4, IBM Skills Network open datasets |
+
+---
+
+## 📊 Key Findings
+
+- **KSC LC-39A** accounts for ~41.7% of all successful launches with a **76.9% success rate** — the highest of any site.
+- Success rate correlates strongly with **flight number** — SpaceX consistently improved over time.
+- Optimal payload range for success is **0 – 5,300 kg**.
+- **FT-series boosters** achieve the highest overall landing success rate.
+- All four active launch sites sit on coastlines, enabling safe over-ocean trajectories.
+- The best ML model achieves **>83% test accuracy** in predicting first-stage landing outcome.
+
+---
+
+## 📓 Original Notebooks
+
+| Notebook | Description |
+|----------|-------------|
+| `spaceX_dataCollection` | REST API requests to SpaceX v4, data normalisation, helper functions for booster/launchpad/payload/core enrichment |
+| `spaceX_webscraping` | BeautifulSoup scraping of the Falcon 9 Wikipedia launch history table into a Pandas DataFrame |
+| `spaceX_datawranglingEDA` | Outcome classification, training label creation (`Class` column), missing-value analysis |
+| `spaceX_EDAWithSQL` | IBM Db2 SQL queries — launch counts, payload statistics, success rates per orbit and site |
+| `spaceX_datavisualization` | Feature engineering, `catplot` and scatter visualisations with seaborn and matplotlib |
+| `spaceX_dataViz_IVAFolium` | Folium `MarkerCluster`, `MousePosition`, `DivIcon` — launch site mapping and proximity distance calculations |
+| `spaceX_ML_PredictiveAnalysis` | `StandardScaler`, `train_test_split`, 10-fold `GridSearchCV` across LR / SVM / Decision Tree / KNN |
+| `spaceX_IVADash_LaunchRecords` | Original interactive Dash app with dropdown, range slider, pie chart, and scatter callbacks |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Python 3.10+
+- pip
+
+### Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/YOUR_USERNAME/ibmdsprojectspace.git
+cd ibmdsprojectspace
+
+# (Recommended) Create a virtual environment
+python -m venv .venv
+.venv\Scripts\activate        # Windows
+# source .venv/bin/activate   # macOS / Linux
+
+# Install dependencies
+cd streamlit_app
+pip install -r requirements.txt
+
+# Launch the app
+python -m streamlit run app.py
+```
+
+---
+
+## 📜 License
+
+This project was completed as part of the **IBM Data Science Professional Certificate** capstone on Coursera. Data is sourced from the [SpaceX REST API](https://github.com/r-spacex/SpaceX-API) and IBM Skills Network open datasets.
+
+---
+
+<div align="center">
+Made with ❤️ and Python
+</div>
