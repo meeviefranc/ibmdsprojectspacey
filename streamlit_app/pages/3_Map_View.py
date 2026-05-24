@@ -175,7 +175,7 @@ site_stats["Success Rate (%)"] = (
     site_stats["Successes"] / site_stats["Total"] * 100
 ).round(1)
 
-st.dataframe(site_stats, use_container_width=True, hide_index=True)
+st.dataframe(site_stats, width="stretch", hide_index=True)
 
 with st.expander("📝 Geographic Insights"):
     st.markdown(

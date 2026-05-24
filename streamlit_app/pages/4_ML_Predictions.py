@@ -34,6 +34,19 @@ st.set_page_config(page_title="ML Predictions", page_icon="🤖", layout="wide")
 st.title("🤖 Machine Learning — First Stage Landing Prediction")
 st.caption("Reproduced from spaceX_ML_PredictiveAnalysis.ipynb")
 
+st.markdown(
+    """
+The ML models below reveal which features (launch site, payload mass, orbit type, booster version,
+flight number) most influence landing success.
+
+The four algorithms (Logistic Regression, SVM, Decision Tree, KNN) are compared because there's no
+guarantee one fits this dataset best — GridSearchCV finds the optimal hyperparameters for each, and
+then picks the winner based on test accuracy and the confusion matrix. The confusion matrix matters
+here specifically because a **false positive** (predicting a successful landing that fails) has real
+financial consequences for a bid.
+"""
+)
+
 # ── Load data ─────────────────────────────────────────────────────────────────
 data = load_eda_data()
 X_df = load_ml_features()
@@ -58,7 +71,7 @@ with st.sidebar:
     use_dt = st.checkbox("Decision Tree", value=True)
     use_knn = st.checkbox("K-Nearest Neighbours", value=True)
 
-    run_btn = st.button("▶ Train & Evaluate", type="primary", use_container_width=True)
+    run_btn = st.button("▶ Train & Evaluate", type="primary", use_container_width=True)  # noqa: button API unchanged
 
 # ── Train ─────────────────────────────────────────────────────────────────────
 X_train, X_test, Y_train, Y_test = train_test_split(
@@ -172,7 +185,7 @@ if run_btn or st.session_state.get("ml_results"):
             for r in results
         ]
     )
-    st.dataframe(summary, use_container_width=True, hide_index=True)
+    st.dataframe(summary, width="stretch", hide_index=True)
 
     # Bar chart
     bar_df = pd.DataFrame(
@@ -187,7 +200,7 @@ if run_btn or st.session_state.get("ml_results"):
         text_auto=".2f",
         range_y=[0, 100],
     )
-    st.plotly_chart(fig_bar, use_container_width=True)
+    st.plotly_chart(fig_bar, width="stretch")
 
     # ── Per-model detail ───────────────────────────────────────────────────
     st.divider()
@@ -219,7 +232,7 @@ if run_btn or st.session_state.get("ml_results"):
                     xaxis_title="Predicted",
                     yaxis_title="Actual",
                 )
-                st.plotly_chart(fig_cm, use_container_width=True)
+                st.plotly_chart(fig_cm, width="stretch")
 
             # Classification report
             report_df = pd.DataFrame(result["report"]).T.drop(
@@ -228,7 +241,7 @@ if run_btn or st.session_state.get("ml_results"):
             report_df = report_df.map(
                 lambda v: f"{v:.3f}" if isinstance(v, float) else v
             )
-            st.dataframe(report_df, use_container_width=True)
+            st.dataframe(report_df, width="stretch")
 
 else:
     st.info("Configure model settings in the sidebar and press **▶ Train & Evaluate** to begin.")

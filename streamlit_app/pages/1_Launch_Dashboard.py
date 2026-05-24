@@ -102,7 +102,7 @@ with col_pie:
             color_discrete_map={"Success": "#2ecc71", "Failure": "#e74c3c"},
             hole=0.35,
         )
-    st.plotly_chart(fig_pie, use_container_width=True)
+    st.plotly_chart(fig_pie, width="stretch")
 
 with col_scatter:
     st.subheader("Payload Mass vs. Launch Outcome")
@@ -121,7 +121,7 @@ with col_scatter:
         hover_data=["Launch Site", "Booster Version Category"],
     )
     fig_scatter.update_yaxes(tickvals=[0, 1], ticktext=["Failure", "Success"])
-    st.plotly_chart(fig_scatter, use_container_width=True)
+    st.plotly_chart(fig_scatter, width="stretch")
 
 # ── Findings ──────────────────────────────────────────────────────────────────
 st.divider()

@@ -24,7 +24,7 @@ st.caption("IBM Data Science Capstone Project · Space Y Competitive Analysis")
 st.image(
     "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud"
     "/IBMDeveloperSkillsNetwork-DS0701EN-SkillsNetwork/lab_v2/images/landing_1.gif",
-    use_container_width=True,
+    width="stretch",
 )
 
 st.markdown(
@@ -63,6 +63,28 @@ try:
     c4.metric("Launch Sites", sites)
 except Exception:
     st.info("Summary statistics will appear here once data loads.")
+
+st.subheader("Key Findings")
+st.markdown(
+    """
+- The best ML model achieves **>83% test accuracy**, meaning it correctly predicts first-stage
+  landing outcomes more than 4 out of 5 times.
+- The models identify clear predictors: **KSC LC-39A** as the most reliable site (76.9% historical
+  success), **FT-series boosters** as the best-performing hardware, and a **0–5,300 kg payload
+  range** as the sweet spot for successful recoveries.
+- The strong correlation between **flight number and success rate** also confirms that landing
+  probability is not random — it's learnable from structured features.
+
+These insights can help Space Y optimize launch parameters and site selection to maximize their chances of successful landings.
+
+SpaceX charges $62M per launch versus competitors at $165M+. 
+The savings come almost entirely from recovering and reusing the first-stage booster. 
+This makes landing outcome prediction directly valuable to Space Y in two ways:
+
+1. **Bid competitively** — if SpaceX's first stage is likely to fail on a given launch profile, their cost rises toward $165M. Space Y can use that insight to undercut them.
+2. **Understand cost drivers** — the ML models reveal which features (launch site, payload mass, orbit type, booster version, flight number) most influence landing success.
+"""
+)
 
 st.divider()
 

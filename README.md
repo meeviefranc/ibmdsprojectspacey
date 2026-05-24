@@ -27,11 +27,20 @@ This project answers one critical question:
 
 The full pipeline covers data collection, wrangling, SQL analysis, geospatial visualisation, and a multi-model machine learning comparison, all surfaced through a modern **Streamlit** web application.
 
+### Why Machine Learning?
+
+SpaceX charges **$62M** per launch versus competitors at **$165M+**. The savings come almost entirely from recovering and reusing the first-stage booster. This makes landing outcome prediction directly valuable to Space Y in two ways:
+
+1. **Bid competitively** — if SpaceX's first stage is likely to fail on a given launch profile, their cost rises toward $165M. Space Y can use that insight to undercut them.
+2. **Understand cost drivers** — the ML models reveal which features (launch site, payload mass, orbit type, booster version, flight number) most influence landing success.
+
+Four algorithms — Logistic Regression, SVM, Decision Tree, and KNN — are compared because no single model is guaranteed to fit best. GridSearchCV finds the optimal hyperparameters for each, and the winner is selected based on test accuracy and confusion matrix analysis. The confusion matrix is especially important here: a **false positive** (predicting a successful landing that fails) carries real financial consequences for any competitive bid.
+
 ---
 
 ## ✨ Live App — Streamlit UI
 
-The project has been upgraded from a legacy Dash app to a fully-featured **multi-page Streamlit application**.
+The project uses Streamlit UI to demonstrate the analysis results in a **multi-page Streamlit application**.
 
 | Page | Description |
 |------|-------------|

@@ -52,7 +52,7 @@ if section == "Dataset Overview":
         int(df.isnull().sum().sum()),
     )
 
-    st.dataframe(df.head(20), use_container_width=True)
+    st.dataframe(df.head(20), width="stretch")
 
     st.subheader("Missing Values (% per column)")
     missing = (df.isnull().sum() / len(df) * 100).reset_index()
@@ -62,12 +62,13 @@ if section == "Dataset Overview":
         st.success("No missing values found.")
     else:
         fig = px.bar(missing, x="Missing %", y="Column", orientation="h")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     st.subheader("Column Types")
     dtypes_df = df.dtypes.reset_index()
     dtypes_df.columns = ["Column", "Dtype"]
-    st.dataframe(dtypes_df, use_container_width=True)
+    dtypes_df["Dtype"] = dtypes_df["Dtype"].astype(str)
+    st.dataframe(dtypes_df, width="stretch")
 
 # ── Flight Number Trends ──────────────────────────────────────────────────────
 elif section == "Flight Number Trends":
@@ -85,7 +86,7 @@ elif section == "Flight Number Trends":
         },
         title="Flight Number vs. Payload Mass",
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
     st.info(
         "As flight number increases, the first stage is more likely to land successfully — "
         "reflecting SpaceX's iterative improvements over time."
@@ -103,7 +104,7 @@ elif section == "Launch Site Analysis":
         labels={"FlightNumber": "Flight Number", "LaunchSite": "Launch Site", "color": "Outcome"},
         title="Flight Number vs. Launch Site",
     )
-    st.plotly_chart(fig1, use_container_width=True)
+    st.plotly_chart(fig1, width="stretch")
 
     st.subheader("Payload Mass vs. Launch Site")
     fig2 = px.strip(
@@ -115,13 +116,13 @@ elif section == "Launch Site Analysis":
         labels={"PayloadMass": "Payload Mass (kg)", "LaunchSite": "Launch Site", "color": "Outcome"},
         title="Payload Mass vs. Launch Site",
     )
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width="stretch")
 
     st.subheader("Launch Count per Site")
     site_counts = df["LaunchSite"].value_counts().reset_index()
     site_counts.columns = ["Launch Site", "Count"]
     fig3 = px.bar(site_counts, x="Launch Site", y="Count", title="Launches per Site", color="Launch Site")
-    st.plotly_chart(fig3, use_container_width=True)
+    st.plotly_chart(fig3, width="stretch")
 
 # ── Orbit Analysis ────────────────────────────────────────────────────────────
 elif section == "Orbit Analysis":
@@ -145,13 +146,13 @@ elif section == "Orbit Analysis":
         text="Success Rate (%)",
     )
     fig.update_traces(texttemplate="%{text}%", textposition="outside")
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     st.subheader("Launch Count by Orbit")
     orbit_counts = df["Orbit"].value_counts().reset_index()
     orbit_counts.columns = ["Orbit", "Count"]
     fig2 = px.pie(orbit_counts, values="Count", names="Orbit", title="Distribution of Launches by Orbit", hole=0.3)
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width="stretch")
 
 # ── Payload vs. Success ───────────────────────────────────────────────────────
 elif section == "Payload vs. Success":
@@ -165,7 +166,7 @@ elif section == "Payload vs. Success":
         labels={"x": "Outcome", "PayloadMass": "Payload Mass (kg)"},
         title="Payload Mass Distribution — Success vs. Failure",
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     st.subheader("Payload Mass vs. Success (by Booster Version)")
     if "BoosterVersion" in df.columns or "Booster Version" in df.columns:
@@ -178,7 +179,7 @@ elif section == "Payload vs. Success":
             title="Payload Mass vs. Success by Booster Version",
             labels={"PayloadMass": "Payload Mass (kg)", "Class": "Outcome (1=Success)"},
         )
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width="stretch")
 
 # ── Year-over-Year Trend ──────────────────────────────────────────────────────
 elif section == "Year-over-Year Trend":
@@ -201,7 +202,7 @@ elif section == "Year-over-Year Trend":
             title="Cumulative Success Rate over Flights",
             labels={"Rolling Success": "Cumulative Success Rate (%)", "FlightNumber": "Flight Number"},
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
         st.stop()
 
     yearly = (
@@ -220,4 +221,4 @@ elif section == "Year-over-Year Trend":
         title="Year-over-Year Landing Success Rate",
     )
     fig.update_traces(line_color="#2ecc71")
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
